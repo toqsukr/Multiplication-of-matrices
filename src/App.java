@@ -1,8 +1,8 @@
 public class App {
 
     public static void main(String[] args) {
-        int matrixRows = 1000;
-        int matrixCols = 1000;
+        int matrixRows = 3333;
+        int matrixCols = 3333;
 
         Matrix firstMatrix = Matrix.generateRandomMatrix(matrixRows, matrixCols);
         Matrix secondMatrix = Matrix.generateRandomMatrix(matrixCols, matrixRows);

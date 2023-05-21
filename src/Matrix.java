@@ -9,6 +9,13 @@ public class Matrix {
     private int[][] values;
     private int[][] allCols;
 
+    /***
+     * The Matrix class constructor
+     * 
+     * @param matrix the matrix value array
+     * @param row    matrix rows number
+     * @param col    matrix columns number
+     */
     public Matrix(int[][] matrix, int row, int col) {
         rowCount = row;
         colCount = col;
@@ -24,10 +31,22 @@ public class Matrix {
         }
     }
 
+    /***
+     * The getter of allCols
+     * 
+     * @return matrix columns array
+     */
     public int[][] getAllCols() {
         return allCols;
     }
 
+    /***
+     * The method multiples matrix row to column of other matrix
+     * 
+     * @param row    the first multiplier
+     * @param column the second multiplier
+     * @return the result of multiplying
+     */
     public static int multiplyRowByColumn(int[] row, int[] column) {
         int sum = 0;
         for (int i = 0; i < row.length; i++) {
@@ -36,6 +55,12 @@ public class Matrix {
         return sum;
     }
 
+    /***
+     * The method finds the min divisor of number
+     * 
+     * @param n the transfered number
+     * @return the min divisor of number
+     */
     private static int findMinDivisor(int n) {
         if (n % 2 == 0) {
             return 2;
@@ -49,6 +74,16 @@ public class Matrix {
         return n;
     }
 
+    /***
+     * The method multiples matrix to other matrix by multiple threads
+     * 
+     * @param matrix the other matrix
+     * @return the multiplying result
+     * @throws InterruptedException Thrown when a thread is waiting, sleeping, or
+     *                              otherwise occupied, and the thread is
+     *                              interrupted , either before or during the
+     *                              activity.
+     */
     public Matrix multiThreadingMultiplyMatrix(Matrix matrix) throws InterruptedException {
         int threadPartCount = matrix.getRowCount() > 6 && matrix.getColumnCount() > 6
                 ? Matrix.findMinDivisor(matrix.getRowCount())
@@ -87,6 +122,12 @@ public class Matrix {
         return new Matrix(val, this.getRowCount(), matrix.getColumnCount());
     }
 
+    /***
+     * The method multiples matrix to other matrix by single thread
+     * 
+     * @param matrix the other matrix
+     * @return the multiplying result
+     */
     public Matrix oneThreadingMultiplyMatrix(Matrix matrix) {
         int[][] val = new int[this.getRowCount()][matrix.getColumnCount()];
         for (int i = 0; i < this.getRowCount(); i++) {
@@ -100,18 +141,41 @@ public class Matrix {
         return new Matrix(val, this.getRowCount(), matrix.getColumnCount());
     }
 
+    /***
+     * Getter of rowCount
+     * 
+     * @return field rowCount
+     */
     public int getRowCount() {
         return rowCount;
     }
 
+    /***
+     * Getter of columnCount
+     * 
+     * @return field columnCount
+     */
     public int getColumnCount() {
         return colCount;
     }
 
+    /***
+     * The method checks whether the matrices are multipliable
+     * 
+     * @param matrix the other matrix
+     * @return true if the matrices can be multiplied, otherwise false
+     */
     public boolean isMultipliable(Matrix matrix) {
         return this.getColumnCount() == matrix.getRowCount();
     }
 
+    /***
+     * The method generates random matrix
+     * 
+     * @param M the matrix row count
+     * @param N the matrix column count
+     * @return the generated matrix
+     */
     public static Matrix generateRandomMatrix(int M, int N) {
         System.out.format("Генерация случайной %d x %d матрицы...\n", M, N);
         Random rand = new Random();
@@ -125,6 +189,11 @@ public class Matrix {
         return new Matrix(output, M, N);
     }
 
+    /***
+     * The function prints the matrix into console by values array
+     * 
+     * @param values of matrix
+     */
     public static void printMatrix(int[][] values) {
         int rowCount = values.length;
         int colCount = values[0].length;
@@ -137,6 +206,9 @@ public class Matrix {
         System.out.println("");
     }
 
+    /***
+     * The method prints the matrix into console
+     */
     public void printMatrix() {
         System.out.println("Матрица: ");
         for (int i = 0; i < rowCount; i++) {
